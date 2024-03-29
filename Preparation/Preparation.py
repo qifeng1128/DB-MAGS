@@ -52,13 +52,13 @@ def prepare_join_table(pre,select_sqls):
     构建用于关联字段类型不一致的隐式转换的join表
     '''
     # 构建用于隐式转换join的表(索引失效）
-    create_table_sql = "CREATE TABLE implicit_join_without_index_table (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_c_id))"
-    insert_sql = "insert into implicit_join_without_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_join_without_index_table1 (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_c_id))"
+    insert_sql = "insert into implicit_join_without_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
 
     # 构建用于隐式转换join的表(索引有效）
-    create_table_sql = "CREATE TABLE implicit_join_with_index_table (h_c_id SMALLINT(6), h_data VARCHAR(255), index index_cid(h_c_id))"
-    insert_sql = "insert into implicit_join_with_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_join_with_index_table1 (h_c_id SMALLINT(6), h_data VARCHAR(255), index index_cid(h_c_id))"
+    insert_sql = "insert into implicit_join_with_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
 
 def prepare_charset_table(pre,select_sqls):
@@ -66,13 +66,13 @@ def prepare_charset_table(pre,select_sqls):
     构建用于char类型字段不一致的隐式转换的join表
     '''
     # 构建用于隐式转换join的表(索引失效）
-    create_table_sql = "CREATE TABLE implicit_charset_without_index_table (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) ENGINE=InnoDB DEFAULT CHARSET=gbk"
-    insert_sql = "insert into implicit_charset_without_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_charset_without_index_table1 (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) ENGINE=InnoDB DEFAULT CHARSET=gbk"
+    insert_sql = "insert into implicit_charset_without_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
 
     # 构建用于隐式转换join的表(索引有效）
-    create_table_sql = "CREATE TABLE implicit_charset_with_index_table (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) ENGINE=InnoDB DEFAULT CHARSET=utf8"
-    insert_sql = "insert into implicit_charset_with_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_charset_with_index_table1 (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+    insert_sql = "insert into implicit_charset_with_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
 
 
@@ -81,18 +81,11 @@ def prepare_validation_table(pre,select_sqls):
     构建用于校验规则不一致的隐式转换的join表
     '''
     # 构建用于隐式转换join的表(索引失效）
-    create_table_sql = "CREATE TABLE implicit_validation_without_index_table (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) default character set utf8 collate utf8_bin"
-    insert_sql = "insert into implicit_validation_without_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_validation_without_index_table1 (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) default character set utf8 collate utf8_bin"
+    insert_sql = "insert into implicit_validation_without_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
 
     # 构建用于隐式转换join的表(索引有效）
-    create_table_sql = "CREATE TABLE implicit_validation_with_index_table (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) default character set utf8 collate utf8_general_ci"
-    insert_sql = "insert into implicit_validation_with_index_table (h_c_id,h_data) values(%s,%s)"
+    create_table_sql = "CREATE TABLE implicit_validation_with_index_table1 (h_c_id VARCHAR(255), h_data VARCHAR(255), index index_cid(h_data)) default character set utf8 collate utf8_general_ci"
+    insert_sql = "insert into implicit_validation_with_index_table1(h_c_id,h_data) values(%s,%s)"
     pre.create_part_table(create_table_sql, select_sqls, insert_sql)
-
-
-select_sqls = ["select h_c_id,h_data from history"]
-pre = Preparation()
-# prepare_join_table(pre,select_sqls)
-prepare_charset_table(pre,select_sqls)
-prepare_validation_table(pre,select_sqls)

@@ -10,7 +10,8 @@ class Transcation():
         创建新连接
         '''
         db = Database()  # 这里必须在新的连接下发起事务，否则会在start_transaction处报错 非DatabaseError
-        conn, cur = db.connection2()
+        conn = db.conn
+        cur = db.cursor
         # 事务开始
         conn.begin()
         return conn, cur
